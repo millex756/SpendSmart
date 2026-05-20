@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Expenses";
+}
+
+@model IEnumerable<Expense>
+
+<div class="text-center">
+    <h1 class="display-4">Expenses</h1>
+    <br />
+    <hr/>
+    <h3>Total Expenses @(ViewBag.Expenses is decimal d ? d.ToString("C") : String.Empty)</h3>
+    <a class="btn btn-secondary" asp-area="" asp-controller="Home" asp-action="CreateEditExpense">Create/Edit Expense</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th</button>>Id</th>
+                <th>Value</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var expense in Model)
+            {
+                <tr>
+                    <td>@expense.Id</td>
+                    <td>@expense.Value.ToString("C")</td>
+                    <td>@expense.Description</td>
+                    <td>
+                        <a asp-action="CreateEditExpense" asp-route-id="@expense.Id">Edit</a> |
+                        <a asp-action="DeleteExpense" asp-route-id="@expense.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
